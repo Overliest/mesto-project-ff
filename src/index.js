@@ -2,15 +2,14 @@ import './pages/index.css'
 import './images/avatar.jpg'
 import { 
   closePopup,
-  openPopup, 
-  handleEscapeKey
+  openPopup
 } from './features/modal'
 import { 
-  initialCards,
   createCard,
   deleteCard,
   makeCardFavorite
 } from './features/cards'
+import { initialCards } from './features/initialCards'
 
 // DOM узлы
 const placesList = document.querySelector('.places__list')
@@ -35,8 +34,6 @@ const captionInPopup = popupImage.querySelector('.popup__caption')
 popups.forEach((popup) => {
   popup.classList.add('popup_is-animated')
 })
-
-document.addEventListener('keydown', handleEscapeKey)
 
 const handleImageClick = (event) => {
   imageInPopup.src = event.target.src
@@ -86,11 +83,8 @@ addCardButton.addEventListener('click', () => {
 newCardForm.addEventListener('submit', handleSubmitNewCardForm)
 
 closeButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    closePopup(popupEditProfile)
-    closePopup(popupNewCard)
-    closePopup(popupImage)
-  })
+  const popup = button.closest('.popup')
+  button.addEventListener('click', () => closePopup(popup))
 })
 
 initialCards.forEach(cardData => {
