@@ -8,11 +8,11 @@ import {
   createCard,
   removeCard,
   makeCardFavorite
-} from './features/cards'
+} from './features/card'
 import { 
   enableValidation,
   clearValidation
-} from './features/validation.js'
+} from './features/validation'
 import {
   getInitialCards, 
   getUser, 
@@ -20,7 +20,7 @@ import {
   addCard, 
   deleteCard, 
   updateAvatar 
-} from './features/api.js'
+} from './features/api'
 
 // DOM узлы
 const placesList = document.querySelector('.places__list')
@@ -55,8 +55,8 @@ let profileId
 const getUserInfo = async () => {
   const user = await getUser()
 
-  profileNameInput.textContent = user.name
-  profileJobInput.textContent = user.about
+  profileTitle.textContent = user.name
+  profileDescription.textContent = user.about
   profileImage.src = user.avatar
   profileId = user._id
 }
